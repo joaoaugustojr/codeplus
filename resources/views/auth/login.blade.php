@@ -11,7 +11,7 @@
     <section class="dados d-flex justify-content-center align-items-center">
 
         <div class="logo">
-            <h1>teste</h1>
+            <h1>teste 1</h1>
         </div>
 
         {!! Form::open(['route' => 'rt.telaLogin', 'method' => 'post']) !!}
