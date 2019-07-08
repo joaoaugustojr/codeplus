@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'Auth\LoginController@index')->name('rt.telaLogin');
+Route::get('/login', function () {
+    return redirect()->route('rt.telaLogin');
 });
+
+Route::group(['namespace' => 'Auth'], function () { });
