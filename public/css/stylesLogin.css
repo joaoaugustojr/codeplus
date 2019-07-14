@@ -50,14 +50,14 @@ body {
 }
 
 .iconLogin {
-    width: 10%;
+    width: 11%;
     height: 37px;
     display: inline-grid;
     background: #9613b3;
     color: #fff;
     text-align: center;
     align-content: center;
-    justify-content: center
+    justify-content: center;
 }
 
 .groupInput {
@@ -67,7 +67,7 @@ body {
 }
 
 .iconLogin>ion-icon {
-    font-size: 25px
+    font-size: 22px;
 }
 
 .btnLogin {

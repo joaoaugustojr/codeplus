@@ -14,6 +14,8 @@
 
     <section class="loginBox bg-white text-center">
 
+        {{-- <div id="example"></div> --}}
+
         <div class="codePlusLogo text-center d-inline-block justify-content-center">
             <img class="text-center" src="{{ asset('src/images/logocodeplus.png') }}">
             <ion-icon class="dropIcon" name="arrow-dropdown"></ion-icon>
@@ -38,7 +40,6 @@
         </form>
 
         <p class="text-capitalize textSuport"><small class="font-weight-light">não consegue entrar? contate suporte</small></p>
-
 
     </section>
 
