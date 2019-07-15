@@ -19,6 +19,7 @@ class CreateStoresTable extends Migration
             $table->string('name_fantasy')->nullable();
             $table->string('cnpj')->nullable()->unique();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

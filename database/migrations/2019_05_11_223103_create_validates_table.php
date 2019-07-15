@@ -26,6 +26,7 @@ class CreateValidatesTable extends Migration
             $table->foreign('list_validate_id')->references('id')->on('list_validates')->onDelete('cascade');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -27,6 +27,7 @@ class CreateContsTable extends Migration
             $table->foreign('list_cont_id')->references('id')->on('list_conts')->onDelete('cascade');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

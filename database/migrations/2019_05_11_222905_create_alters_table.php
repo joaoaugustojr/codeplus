@@ -27,6 +27,7 @@ class CreateAltersTable extends Migration
             $table->foreign('list_alter_id')->references('id')->on('list_alters')->onDelete('cascade');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

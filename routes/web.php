@@ -12,8 +12,11 @@
 */
 
 Route::get('/', 'Auth\LoginController@index')->name('rt.telaLogin');
+Route::post('/', 'Auth\LoginController@auth')->name('rt.authUser');
 Route::get('/login', function () {
     return redirect()->route('rt.telaLogin');
 });
 
-Route::group(['namespace' => 'Auth'], function () { });
+Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth', 'prefix' => 'dashboard'], function () {
+    Route::get('/', 'DashController@index')->name('rt.dashboard');
+});

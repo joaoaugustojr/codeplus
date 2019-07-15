@@ -14,30 +14,28 @@
 
     <section class="loginBox bg-white text-center">
 
-        {{-- <div id="example"></div> --}}
-
         <div class="codePlusLogo text-center d-inline-block justify-content-center">
             <img class="text-center" src="{{ asset('src/images/logocodeplus.png') }}">
             <ion-icon class="dropIcon" name="arrow-dropdown"></ion-icon>
         </div>
 
-        <form class="d-inline-block formLogin" action="" method="post">
-
+    <form class="d-inline-block formLogin" action="{{route('rt.authUser')}}" method="POST">
+            {{ csrf_field() }}
             <div class="groupInput">
                 <div class="iconLogin"><ion-icon name="apps"></ion-icon></div>
-                <input type="text" name="estabelecimento" id="" placeholder="Código do Estabelecimento">
+                <input type="number" name="store_id" placeholder="Código do Estabelecimento" required>
             </div>
             <div class="groupInput">
                 <div class="iconLogin"><ion-icon name="person"></ion-icon></div>
-                <input type="text" name="login" id="" placeholder="Usuário">
+                <input type="text" name="login" placeholder="Usuário" required>
             </div>
             <div class="groupInput">
                 <div class="iconLogin"><ion-icon name="key"></ion-icon></div>
-                <input type="password" name="password" id="" placeholder="Senha">
+                <input type="password" name="password" placeholder="Senha" required>
             </div>
 
             <button class="btnLogin" type="submit">Login</button>
-        </form>
+    </form>
 
         <p class="text-capitalize textSuport"><small class="font-weight-light">não consegue entrar? contate suporte</small></p>
 

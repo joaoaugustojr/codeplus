@@ -21,10 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('status')->default('ATIVO');
             $table->rememberToken();
-
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
-
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

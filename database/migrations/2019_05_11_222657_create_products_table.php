@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->double('price', 10, 3)->nullable();
             $table->string('session')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
