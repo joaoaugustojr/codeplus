@@ -12,33 +12,12 @@
 
 <section class="container-fluid" >
 
-    <section class="loginBox bg-white text-center">
-
-        <div class="codePlusLogo text-center d-inline-block justify-content-center">
-            <img class="text-center" src="{{ asset('src/images/logocodeplus.png') }}">
-            <ion-icon class="dropIcon" name="arrow-dropdown"></ion-icon>
-        </div>
-
-    <form class="d-inline-block formLogin" action="{{route('rt.authUser')}}" method="POST">
-            {{ csrf_field() }}
-            <div class="groupInput">
-                <div class="iconLogin"><ion-icon name="apps"></ion-icon></div>
-                <input type="number" name="store_id" placeholder="Código do Estabelecimento" required>
-            </div>
-            <div class="groupInput">
-                <div class="iconLogin"><ion-icon name="person"></ion-icon></div>
-                <input type="text" name="login" placeholder="Usuário" required>
-            </div>
-            <div class="groupInput">
-                <div class="iconLogin"><ion-icon name="key"></ion-icon></div>
-                <input type="password" name="password" placeholder="Senha" required>
-            </div>
-
-            <button class="btnLogin" type="submit">Login</button>
-    </form>
-
-        <p class="text-capitalize textSuport"><small class="font-weight-light">não consegue entrar? contate suporte</small></p>
-
+    <section
+        id="login"
+        msgSuport="Não Consegue Entrar? Contate Suporte"
+        token="{{ csrf_token() }}"
+        img="{{ asset('src/images/logocodeplus.png') }}"
+        >
     </section>
 
 </section>

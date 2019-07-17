@@ -61464,7 +61464,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 
-__webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js");
+__webpack_require__(/*! ./components/LoginScreen/Login */ "./resources/js/components/LoginScreen/Login.js");
 
 /***/ }),
 
@@ -61526,16 +61526,16 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Example.js":
-/*!********************************************!*\
-  !*** ./resources/js/components/Example.js ***!
-  \********************************************/
+/***/ "./resources/js/components/LoginScreen/Login.js":
+/*!******************************************************!*\
+  !*** ./resources/js/components/LoginScreen/Login.js ***!
+  \******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Example; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Login; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
@@ -61561,43 +61561,102 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var Example =
+var Login =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Example, _Component);
+  _inherits(Login, _Component);
 
-  function Example() {
-    _classCallCheck(this, Example);
+  function Login(props) {
+    var _this;
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Example).apply(this, arguments));
+    _classCallCheck(this, Login);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Login).call(this, props));
+    _this.state = {};
+    return _this;
   }
 
-  _createClass(Example, [{
+  _createClass(Login, [{
+    key: "validarUsuario",
+    value: function validarUsuario() {
+      alert('validado');
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container"
+        "class": "loginBox bg-white text-center"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row justify-content-center"
+        "class": "codePlusLogo text-center d-inline-block justify-content-center"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        "class": "text-center",
+        src: this.props.img
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
+        "class": "dropIcon",
+        name: "arrow-dropdown"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        "class": "d-inline-block formLogin",
+        action: "#",
+        method: "POST"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "hidden",
+        name: "_token",
+        value: this.props.token
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "groupInput"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-md-8"
+        "class": "iconLogin"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
+        name: "apps"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "number",
+        name: "store_id",
+        placeholder: "C\xF3digo do Estabelecimento"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "groupInput"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card"
+        "class": "iconLogin"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
+        name: "person"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        name: "login",
+        placeholder: "Usu\xE1rio"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "class": "groupInput"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-header"
-      }, "Example Components Jo\xE3o"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-body"
-      }, "I'm an example component!")))));
+        "class": "iconLogin"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
+        name: "key"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "password",
+        name: "password",
+        placeholder: "Senha"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        "class": "btnLogin",
+        onClick: this.validarUsuario
+      }, "Login")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        "class": "text-capitalize textSuport"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+        "class": "font-weight-light"
+      }, this.props.msg)));
     }
   }]);
 
-  return Example;
+  return Login;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 
 
-if (document.getElementById('example')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Example, null), document.getElementById('example'));
+if (document.getElementById('login')) {
+  var msg = document.getElementById('login').getAttribute('msgSuport');
+  var token = document.getElementById('login').getAttribute('token');
+  var img = document.getElementById('login').getAttribute('img');
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Login, {
+    msg: msg,
+    token: token,
+    img: img
+  }), document.getElementById('login'));
 }
 
 /***/ }),
