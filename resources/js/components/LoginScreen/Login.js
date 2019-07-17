@@ -1,43 +1,82 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { toastr } from 'react-redux-toastr';
 
 export default class Login extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			store_id: '',
+			login: '',
+			password: ''
+		};
+
+		this.onChangeStore = (ev) => {
+			this.setState({ store_id: ev.target.value });
+		};
+
+		this.onChangeLogin = (ev) => {
+			this.setState({ login: ev.target.value });
+		};
+
+		this.onChangePassword = (ev) => {
+			this.setState({ password: ev.target.value });
+		};
+
+		this.validarUsuario = this.validarUsuario.bind(this);
 	}
 
 	validarUsuario() {
-		alert('validado');
+		if (this.state.login == '') {
+			toastr.success('The title', 'The message');
+		}
 	}
 
 	render() {
 		return (
 			<div class="loginBox bg-white text-center">
 				<div class="codePlusLogo text-center d-inline-block justify-content-center">
-					<img class="text-center" src={this.props.img} />
+					<img class="text-center" src={this.props.img} onClick={this.validarUsuario} />
 					<ion-icon class="dropIcon" name="arrow-dropdown" />
 				</div>
 
-				<form class="d-inline-block formLogin" action="#" method="POST">
+				<form class="d-inline-block formLogin" method="POST">
 					<input type="hidden" name="_token" value={this.props.token} />
 					<div class="groupInput">
 						<div class="iconLogin">
 							<ion-icon name="apps" />
 						</div>
-						<input type="number" name="store_id" placeholder="Código do Estabelecimento" />
+						<input
+							type="number"
+							name="store_id"
+							value={this.state.store_id}
+							onChange={this.onChangeStore}
+							placeholder="Código do Estabelecimento"
+						/>
 					</div>
 					<div class="groupInput">
 						<div class="iconLogin">
 							<ion-icon name="person" />
 						</div>
-						<input type="text" name="login" placeholder="Usuário" />
+						<input
+							type="text"
+							name="login"
+							value={this.state.login}
+							onChange={this.onChangeLogin}
+							placeholder="Usuário"
+						/>
 					</div>
 					<div class="groupInput">
 						<div class="iconLogin">
 							<ion-icon name="key" />
 						</div>
-						<input type="password" name="password" placeholder="Senha" />
+						<input
+							type="password"
+							name="password"
+							value={this.state.password}
+							onChange={this.onChangePassword}
+							placeholder="Senha"
+						/>
 					</div>
 
 					<button class="btnLogin" onClick={this.validarUsuario}>
