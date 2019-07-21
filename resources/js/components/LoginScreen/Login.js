@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { NotificationManager } from 'react-notifications';
-import Axios from 'axios';
+import axios from 'axios';
 
 export default class Login extends Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			store_id: '',
 			login: '',
-			password: ''
+			password: '',
+			token: this.props.token
 		};
 
 		this.onChange = (ev) => {
@@ -24,25 +26,38 @@ export default class Login extends Component {
 	validarUsuario() {
 		var error = false;
 
-		if (this.state.store_id == '') {
-			NotificationManager.warning('O campo Estabelecimento deve ser preenchido!', 'Aviso');
-			error = true;
-		}
-		if (this.state.login == '') {
-			NotificationManager.warning('O campo Usuário deve ser preenchido!', 'Aviso');
-			error = true;
-		}
-		if (this.state.password == '') {
-			NotificationManager.warning('O campo Senha deve ser preenchido!', 'Aviso');
-			error = true;
-		}
+		this.state.store_id == ''
+			? (NotificationManager.warning('O campo Estabelecimento deve ser preenchido!', 'Aviso'), (error = true))
+			: null;
 
-		if (!error) {
-			this.verificarUsuario();
-		}
+		this.state.login == ''
+			? (NotificationManager.warning('O campo Usuário deve ser preenchido!', 'Aviso'), (error = true))
+			: null;
+
+		this.state.password == ''
+			? (NotificationManager.warning('O campo Senha deve ser preenchido!', 'Aviso'), (error = true))
+			: null;
+
+		!error ? this.verificarUsuario() : null;
 	}
 
-	verificarUsuario() {}
+	verificarUsuario() {
+		axios
+			.post('http://codeplus.desenv:80/', {
+				user: this.state.login,
+				store_id: this.state.store_id,
+				password: this.state.password,
+				token: this.state.token
+			})
+			.then((response) => {
+				response.data == 'error'
+					? NotificationManager.error('Usuário não cadastrado!', 'Erro')
+					: window.location.reload();
+			})
+			.catch((error) => {
+				NotificationManager.error('Erro inesperado - ' + error + ' Contate suporte!', 'Erro');
+			});
+	}
 
 	render() {
 		return (

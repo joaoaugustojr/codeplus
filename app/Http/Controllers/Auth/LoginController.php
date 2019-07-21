@@ -9,16 +9,6 @@ use Illuminate\Support\Facades\View;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
 
     use AuthenticatesUsers;
 
@@ -47,11 +37,8 @@ class LoginController extends Controller
     public function auth(Request $request)
     {
         $user = $request->only('store_id', 'login', 'password');
+        $msg = \Auth::attempt($user) ?  "success" : "error";
 
-        if (\Auth::attempt($user)) {
-            return "login ok";
-        } else {
-            return "login error";
-        }
+        return $msg;
     }
 }
