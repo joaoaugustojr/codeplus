@@ -12,4 +12,7 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import 'react-notifications/lib/notifications.css';
+
+require('./components/Notification');
 require('./components/LoginScreen/Login');

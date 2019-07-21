@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { toastr } from 'react-redux-toastr';
+import { NotificationManager } from 'react-notifications';
 
 export default class Login extends Component {
 	constructor(props) {
@@ -27,8 +27,14 @@ export default class Login extends Component {
 	}
 
 	validarUsuario() {
+		if (this.state.store_id == '') {
+			NotificationManager.warning('O campo Estabelecimento deve ser preenchido!', 'Aviso');
+		}
 		if (this.state.login == '') {
-			toastr.success('The title', 'The message');
+			NotificationManager.warning('O campo Usuário deve ser preenchido!', 'Aviso');
+		}
+		if (this.state.password == '') {
+			NotificationManager.warning('O campo Senha deve ser preenchido!', 'Aviso');
 		}
 	}
 
@@ -36,7 +42,7 @@ export default class Login extends Component {
 		return (
 			<div class="loginBox bg-white text-center">
 				<div class="codePlusLogo text-center d-inline-block justify-content-center">
-					<img class="text-center" src={this.props.img} onClick={this.validarUsuario} />
+					<img class="text-center" src={this.props.img} />
 					<ion-icon class="dropIcon" name="arrow-dropdown" />
 				</div>
 
@@ -78,11 +84,13 @@ export default class Login extends Component {
 							placeholder="Senha"
 						/>
 					</div>
+				</form>
 
+				<div class="buttons">
 					<button class="btnLogin" onClick={this.validarUsuario}>
 						Login
 					</button>
-				</form>
+				</div>
 
 				<p class="text-capitalize textSuport">
 					<small class="font-weight-light">{this.props.msg}</small>
