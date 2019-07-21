@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { NotificationManager } from 'react-notifications';
+import Axios from 'axios';
 
 export default class Login extends Component {
 	constructor(props) {
@@ -11,32 +12,37 @@ export default class Login extends Component {
 			password: ''
 		};
 
-		this.onChangeStore = (ev) => {
-			this.setState({ store_id: ev.target.value });
-		};
-
-		this.onChangeLogin = (ev) => {
-			this.setState({ login: ev.target.value });
-		};
-
-		this.onChangePassword = (ev) => {
-			this.setState({ password: ev.target.value });
+		this.onChange = (ev) => {
+			ev.target.name == 'store_id' ? this.setState({ store_id: ev.target.value }) : null;
+			ev.target.name == 'login' ? this.setState({ login: ev.target.value }) : null;
+			ev.target.name == 'password' ? this.setState({ password: ev.target.value }) : null;
 		};
 
 		this.validarUsuario = this.validarUsuario.bind(this);
 	}
 
 	validarUsuario() {
+		var error = false;
+
 		if (this.state.store_id == '') {
 			NotificationManager.warning('O campo Estabelecimento deve ser preenchido!', 'Aviso');
+			error = true;
 		}
 		if (this.state.login == '') {
 			NotificationManager.warning('O campo Usuário deve ser preenchido!', 'Aviso');
+			error = true;
 		}
 		if (this.state.password == '') {
 			NotificationManager.warning('O campo Senha deve ser preenchido!', 'Aviso');
+			error = true;
+		}
+
+		if (!error) {
+			this.verificarUsuario();
 		}
 	}
+
+	verificarUsuario() {}
 
 	render() {
 		return (
@@ -56,7 +62,7 @@ export default class Login extends Component {
 							type="number"
 							name="store_id"
 							value={this.state.store_id}
-							onChange={this.onChangeStore}
+							onChange={this.onChange}
 							placeholder="Código do Estabelecimento"
 						/>
 					</div>
@@ -68,7 +74,7 @@ export default class Login extends Component {
 							type="text"
 							name="login"
 							value={this.state.login}
-							onChange={this.onChangeLogin}
+							onChange={this.onChange}
 							placeholder="Usuário"
 						/>
 					</div>
@@ -80,7 +86,7 @@ export default class Login extends Component {
 							type="password"
 							name="password"
 							value={this.state.password}
-							onChange={this.onChangePassword}
+							onChange={this.onChange}
 							placeholder="Senha"
 						/>
 					</div>

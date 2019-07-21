@@ -49,10 +49,9 @@ class LoginController extends Controller
         $user = $request->only('store_id', 'login', 'password');
 
         if (\Auth::attempt($user)) {
-            //dd(\Auth::attempt($user));
-            return redirect()->intended('dashboard');
+            return "login ok";
         } else {
-            return redirect()->intended('login');
+            return "login error";
         }
     }
 }
