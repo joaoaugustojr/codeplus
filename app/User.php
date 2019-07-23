@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use Models\Store;
+use App\Models\Store;
 
 class User extends Authenticatable
 {
@@ -17,13 +17,13 @@ class User extends Authenticatable
     protected $table = 'users';
 
     protected $fillable = [
-        'store_id', 'name', 'login', 'password', 'status'
+        'store_id', 'name', 'login', 'password', 'status', 'store'
     ];
 
     protected $hidden = ['password', 'remember_token',];
 
-    public function stores()
+    public function store()
     {
-        return $this->BelongsTo(Store::class);
+        return $this->belongsTo(Store::class);
     }
 }
