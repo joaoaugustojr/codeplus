@@ -18,7 +18,6 @@ class DashController extends Controller
 
     public function index()
     {
-        $user = User::with('store')->where('id', Auth::user()->id)->first();
         return view('dashboard.dashboard', compact('user'));
     }
 }
