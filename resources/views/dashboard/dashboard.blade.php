@@ -16,57 +16,21 @@
 @section('menu')
     <ul class="menu d-inline-block m-0 p-0">
         <img class="d-block" src={{ asset('src/images/logocodeplus.png') }} />
-        <li>
-            <a href="http://">
-                <ion-icon class="text-white" name="md-today"></ion-icon>
-                <span>Dashboard</span>
-            </a>
-        </li>
-        <li>
-            <a href="http://">
-                <ion-icon class="text-white" name="md-apps"></ion-icon>
-                <span>Produtos</span>
-            </a>
-        </li>
-        <li>
-            <a href="http://">
-                <ion-icon class="text-white" name="ios-list"></ion-icon>
-                <span>Contagens</span>
-            </a>
-        </li>
-        <li>
-            <a href="http://">
-                <ion-icon class="text-white" name="md-pricetags"></ion-icon>
-                <span>Alterações</span>
-            </a>
-        </li>
-        <li>
-            <a href="http://">
-                <ion-icon class="text-white" name="md-calendar"></ion-icon>
-                <span>Validade</span>
-            </a>
-        </li>
-        <li>
-            <a href="http://">
-                <ion-icon class="text-white" name="md-arrow-dropdown-circle"></ion-icon>
-                <span>Importação</span>
-            </a>
-        </li>
-        <li>
-            <a href="http://">
-                <ion-icon class="text-white" name="ios-people"></ion-icon>
-                <span>Usuários</span>
-            </a>
-        </li>
-        <li>
-            <a href="http://">
-                <ion-icon class="text-white" name="md-cog"></ion-icon>
-                <span>Configurações</span>
-            </a>
-        </li>
+
+        <li><a href="{{route('rt.dashboard')}}"><ion-icon class="text-white" name="md-today"></ion-icon><span>Dashboard</span></a></li>
+        <li><a href="http://"><ion-icon class="text-white" name="md-apps"></ion-icon><span>Produtos</span></a></li>
+        <li><a href="http://"><ion-icon class="text-white" name="ios-list"></ion-icon><span>Contagens</span></a></li>
+        <li><a href="http://"><ion-icon class="text-white" name="md-pricetags"></ion-icon><span>Alterações</span></a></li>
+        <li><a href="http://"><ion-icon class="text-white" name="md-calendar"></ion-icon><span>Validade</span></a></li>
+        <li><a href="http://"><ion-icon class="text-white" name="md-arrow-dropdown-circle"></ion-icon><span>Importação</span></a></li>
+        <li><a href="{{route('usuarios.index')}}/"><ion-icon class="text-white" name="ios-people"></ion-icon><span>Usuários</span></a></li>
+        <li><a href="http://"><ion-icon class="text-white" name="md-cog"></ion-icon><span>Configurações</span></a></li>
     </ul>
 @endsection
 
 @section('dashContent')
-    <div class="container-fluid"></div>
+    <div class="dashContent container-fluid">
+        @yield('breadcrumbs')
+        @yield('painel')
+    </div>
 @endsection

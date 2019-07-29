@@ -36,15 +36,17 @@
 
 .menu {
 	background: #858585;
-	width: 20rem;
+	width: 25rem;
 	min-height: 100vh;
 	list-style: none;
-	padding-top: 1rem !important;
+	/* padding-top: 1rem !important; */
 }
 
 .menu > img {
 	width: 50%;
 	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 .menu > li {

@@ -4,13 +4,9 @@ namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Store;
-use Auth;
-use App\User;
 
-class DashController extends Controller
+class UsersController extends Controller
 {
-
     protected $redirectTo = '/dashboard';
 
     public function __construct()
@@ -18,6 +14,6 @@ class DashController extends Controller
 
     public function index()
     {
-        return view('dashboard.painels.homeDash', compact('user'));
+        return view('dashboard.painels.usuarios');
     }
 }

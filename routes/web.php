@@ -19,4 +19,5 @@ Route::get('/login', function () {
 
 Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::get('/', 'DashController@index')->name('rt.dashboard');
+    Route::resource('/usuarios', 'UsersController');
 });
