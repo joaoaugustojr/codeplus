@@ -2,7 +2,7 @@
 	background: #757575;
 	padding: 0.5rem 1rem;
 	justify-content: space-between !important;
-	height: 60px;
+	height: 8vh;
 }
 
 .infoUser {
@@ -37,9 +37,8 @@
 .menu {
 	background: #858585;
 	width: 25rem;
-	min-height: 100vh;
+	min-height: 92vh;
 	list-style: none;
-	/* padding-top: 1rem !important; */
 }
 
 .menu > img {

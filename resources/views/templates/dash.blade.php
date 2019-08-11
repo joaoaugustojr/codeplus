@@ -7,6 +7,7 @@
 @section('head')
     <link rel="stylesheet" href="{{ asset('css/dash.css') }}">
     <link rel="stylesheet" href="{{ asset('css/breadcrumbs.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/table.css') }}">
 @endsection
 
 @section('content')
