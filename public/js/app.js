@@ -65875,8 +65875,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Table; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -65894,7 +65892,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 
 
 
@@ -65917,14 +65914,16 @@ function (_Component) {
   }
 
   _createClass(Table, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.setState({
-        keys: Object.keys(this.props.data[0])
-      });
-      this.setState({
-        data: this.props.data
-      });
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      if (nextProps.data !== this.props.data) {
+        this.setState({
+          data: nextProps.data
+        });
+        this.setState({
+          keys: Object.keys(nextProps.data[0])
+        });
+      }
     }
   }, {
     key: "render",
@@ -65938,27 +65937,27 @@ function (_Component) {
           key: key,
           scope: "col"
         }, _this2.props.head[key] || key);
-      }), this.props.action ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+      }), this.state.keys.length > 1 && this.props.action && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
         scope: "col"
-      }, "A\xE7\xE3o") : null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, this.state.data.map(function (value) {
+      }, "A\xE7\xE3o"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, this.state.data.map(function (value) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
           key: value.id
         }, Object.keys(value).map(function (item) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
             key: item
           }, value[item]);
-        }), _this2.props.action ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        }), _this2.props.action && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           "class": "btnActions"
-        }, _this2.props.view ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
+        }, _this2.props.view && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
           "class": "btnView",
           name: "eye"
-        }), ' ') : null, _this2.props.edit ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
+        })), _this2.props.edit && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
           "class": "btnEdit",
           name: "create"
-        })) : null, _this2.props["delete"] ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
+        })), _this2.props["delete"] && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
           "class": "btnRemove",
           name: "trash"
-        })) : null)) : null);
+        })))));
       }))));
     }
   }]);
@@ -65985,6 +65984,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _TableView_Table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../TableView/Table */ "./resources/js/components/TableView/Table.js");
+/* harmony import */ var react_notifications__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-notifications */ "./node_modules/react-notifications/lib/index.js");
+/* harmony import */ var react_notifications__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_notifications__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -66007,6 +66010,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var Users =
 /*#__PURE__*/
 function (_Component) {
@@ -66018,29 +66023,28 @@ function (_Component) {
     _classCallCheck(this, Users);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Users).call(this, props));
-    _this.state = {};
+    _this.state = {
+      data: []
+    };
     return _this;
   }
 
   _createClass(Users, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('http://codeplus.desenv:80/dashboard/usuarios/show').then(function (response) {
+        _this2.setState({
+          data: response.data
+        });
+      })["catch"](function (error) {
+        react_notifications__WEBPACK_IMPORTED_MODULE_3__["NotificationManager"].error('Erro inesperado - ' + error + ' Contate suporte!', 'Erro');
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var data = [{
-        id: 1,
-        name: 'JOAO AUGUSTO DA SILVA JUNIOR',
-        login: 'joaoaugusto',
-        status: 'ATIVO'
-      }, {
-        id: 2,
-        name: 'MIGUEL AUGUSTO MARTINS DA SILVA',
-        login: 'miguelaugusto',
-        status: 'ATIVO'
-      }, {
-        id: 3,
-        name: 'ALBA ANTÔNIA DA COSTA',
-        login: 'albaantonia',
-        status: 'ATIVO'
-      }];
       var head = {
         id: 'Id',
         name: 'Nome',
@@ -66068,7 +66072,7 @@ function (_Component) {
         "aria-label": "Username",
         "aria-describedby": "basic-addon1"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TableView_Table__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        data: data,
+        data: this.state.data,
         head: head,
         action: true,
         edit: true,

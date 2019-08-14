@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Table from '../TableView/Table';
+import { NotificationManager } from 'react-notifications';
+import axios from 'axios';
 
 export default class Users extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			data: []
+		};
+	}
+
+	componentDidMount() {
+		axios
+			.get('http://codeplus.desenv:80/dashboard/usuarios/show')
+			.then((response) => {
+				this.setState({ data: response.data });
+			})
+			.catch((error) => {
+				NotificationManager.error('Erro inesperado - ' + error + ' Contate suporte!', 'Erro');
+			});
 	}
 
 	render() {
-		const data = [
-			{ id: 1, name: 'JOAO AUGUSTO DA SILVA JUNIOR', login: 'joaoaugusto', status: 'ATIVO' },
-			{ id: 2, name: 'MIGUEL AUGUSTO MARTINS DA SILVA', login: 'miguelaugusto', status: 'ATIVO' },
-			{ id: 3, name: 'ALBA ANTÔNIA DA COSTA', login: 'albaantonia', status: 'ATIVO' }
-		];
-
 		const head = { id: 'Id', name: 'Nome', login: 'Login', status: 'Status' };
 
 		return (
@@ -38,8 +47,7 @@ export default class Users extends Component {
 						/>
 					</div>
 				</section>
-
-				<Table data={data} head={head} action={true} edit={true} view={true} delete={true} />
+				<Table data={this.state.data} head={head} action={true} edit={true} view={true} delete={true} />
 			</div>
 		);
 	}

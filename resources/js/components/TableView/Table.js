@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 export default class Table extends Component {
 	constructor(props) {
@@ -10,9 +9,11 @@ export default class Table extends Component {
 		};
 	}
 
-	componentDidMount() {
-		this.setState({ keys: Object.keys(this.props.data[0]) });
-		this.setState({ data: this.props.data });
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.data !== this.props.data) {
+			this.setState({ data: nextProps.data });
+			this.setState({ keys: Object.keys(nextProps.data[0]) });
+		}
 	}
 
 	render() {
@@ -26,7 +27,7 @@ export default class Table extends Component {
 									{this.props.head[key] || key}
 								</th>
 							))}
-							{this.props.action ? <th scope="col">Ação</th> : null}
+							{this.state.keys.length > 1 && (this.props.action && <th scope="col">Ação</th>)}
 						</tr>
 					</thead>
 					<tbody>
@@ -34,27 +35,27 @@ export default class Table extends Component {
 							<tr key={value.id}>
 								{Object.keys(value).map((item) => <td key={item}>{value[item]}</td>)}
 
-								{this.props.action ? (
+								{this.props.action && (
 									<td>
 										<ul class="btnActions">
-											{this.props.view ? (
+											{this.props.view && (
 												<li>
-													<ion-icon class="btnView" name="eye" />{' '}
+													<ion-icon class="btnView" name="eye" />
 												</li>
-											) : null}
-											{this.props.edit ? (
+											)}
+											{this.props.edit && (
 												<li>
 													<ion-icon class="btnEdit" name="create" />
 												</li>
-											) : null}
-											{this.props.delete ? (
+											)}
+											{this.props.delete && (
 												<li>
 													<ion-icon class="btnRemove" name="trash" />
 												</li>
-											) : null}
+											)}
 										</ul>
 									</td>
-								) : null}
+								)}
 							</tr>
 						))}
 					</tbody>
