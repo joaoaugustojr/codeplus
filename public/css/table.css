@@ -41,10 +41,10 @@
 	height: 38px;
 	padding: 0 10px;
 	margin-right: 2rem;
-	background: #858585;
+	background: #cb62cc;
 	color: white;
 }
 
 .headerTable > button:hover {
-	background: #8568f3 !important;
+	background: #d485d1 !important;
 }

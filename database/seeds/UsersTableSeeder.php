@@ -14,8 +14,8 @@ class UsersTableSeeder extends Seeder
     {
         User::create([
             'store_id' => 1,
-            'name' => 'JOÃO AUGUSTO DA SILVA JÚNIOR',
-            'login' => 'joaoaugusto',
+            'name' => 'MIGUEL AUGUSTO MARTINS DA SILVA',
+            'login' => 'miguelaugusto',
             'password' => bcrypt('adm102030'),
         ]);
     }

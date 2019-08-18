@@ -7,12 +7,31 @@ export default class Table extends Component {
 			keys: [],
 			data: []
 		};
+
+		this.filterData = this.filterData.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.data !== this.props.data) {
+		if (nextProps.data != this.props.data) {
 			this.setState({ data: nextProps.data });
 			this.setState({ keys: Object.keys(nextProps.data[0]) });
+		}
+		this.filterData(nextProps.search);
+	}
+
+	filterData(query) {
+		var result = this.props.data;
+
+		if (query.length > 0) {
+			result = result.filter(function(res) {
+				var text = JSON.stringify(res);
+				return text.toUpperCase().includes(query.toUpperCase());
+			});
+			this.setState({ data: result });
+		} else {
+			if (this.props.data.length > 0) {
+				this.setState({ data: this.props.data });
+			}
 		}
 	}
 

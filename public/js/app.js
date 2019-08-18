@@ -65885,9 +65885,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -65910,19 +65910,43 @@ function (_Component) {
       keys: [],
       data: []
     };
+    _this.filterData = _this.filterData.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Table, [{
     key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(nextProps) {
-      if (nextProps.data !== this.props.data) {
+      if (nextProps.data != this.props.data) {
         this.setState({
           data: nextProps.data
         });
         this.setState({
           keys: Object.keys(nextProps.data[0])
         });
+      }
+
+      this.filterData(nextProps.search);
+    }
+  }, {
+    key: "filterData",
+    value: function filterData(query) {
+      var result = this.props.data;
+
+      if (query.length > 0) {
+        result = result.filter(function (res) {
+          var text = JSON.stringify(res);
+          return text.toUpperCase().includes(query.toUpperCase());
+        });
+        this.setState({
+          data: result
+        });
+      } else {
+        if (this.props.data.length > 0) {
+          this.setState({
+            data: this.props.data
+          });
+        }
       }
     }
   }, {
@@ -65998,9 +66022,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -66024,8 +66048,10 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Users).call(this, props));
     _this.state = {
-      data: []
+      data: [],
+      search: ''
     };
+    _this.pesquisar = _this.pesquisar.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -66040,6 +66066,13 @@ function (_Component) {
         });
       })["catch"](function (error) {
         react_notifications__WEBPACK_IMPORTED_MODULE_3__["NotificationManager"].error('Erro inesperado - ' + error + ' Contate suporte!', 'Erro');
+      });
+    }
+  }, {
+    key: "pesquisar",
+    value: function pesquisar(ev) {
+      this.setState({
+        search: ev.target.value
       });
     }
   }, {
@@ -66061,19 +66094,23 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "class": "input-group-prepend"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        "class": "input-group-text",
+        "class": "input-group-text input-dash",
         id: "basic-addon1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
+        "class": "text-white",
         name: "search"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        "class": "form-control",
+        "class": "form-control input-dash-text",
         placeholder: "Pesquisar Usu\xE1rios",
         "aria-label": "Username",
-        "aria-describedby": "basic-addon1"
+        "aria-describedby": "basic-addon1",
+        value: this.state.value,
+        onChange: this.pesquisar
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TableView_Table__WEBPACK_IMPORTED_MODULE_2__["default"], {
         data: this.state.data,
         head: head,
+        search: this.state.search,
         action: true,
         edit: true,
         view: true,

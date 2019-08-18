@@ -8,8 +8,11 @@ export default class Users extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			data: []
+			data: [],
+			search: ''
 		};
+
+		this.pesquisar = this.pesquisar.bind(this);
 	}
 
 	componentDidMount() {
@@ -23,6 +26,10 @@ export default class Users extends Component {
 			});
 	}
 
+	pesquisar(ev) {
+		this.setState({ search: ev.target.value });
+	}
+
 	render() {
 		const head = { id: 'Id', name: 'Nome', login: 'Login', status: 'Status' };
 
@@ -34,20 +41,30 @@ export default class Users extends Component {
 					</button>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1">
-								<ion-icon name="search" />
+							<span class="input-group-text input-dash" id="basic-addon1">
+								<ion-icon class="text-white" name="search" />
 							</span>
 						</div>
 						<input
 							type="text"
-							class="form-control"
+							class="form-control input-dash-text"
 							placeholder="Pesquisar Usuários"
 							aria-label="Username"
 							aria-describedby="basic-addon1"
+							value={this.state.value}
+							onChange={this.pesquisar}
 						/>
 					</div>
 				</section>
-				<Table data={this.state.data} head={head} action={true} edit={true} view={true} delete={true} />
+				<Table
+					data={this.state.data}
+					head={head}
+					search={this.state.search}
+					action={true}
+					edit={true}
+					view={true}
+					delete={true}
+				/>
 			</div>
 		);
 	}
