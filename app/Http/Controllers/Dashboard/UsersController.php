@@ -22,4 +22,18 @@ class UsersController extends Controller
     {
         return json_encode(User::select('id', 'name', 'login', 'status')->get());
     }
+
+    public function store(Request $request)
+    {
+        try {
+            $request->validate([
+                'name' => 'required',
+                'password' => 'required',
+                'login' => 'required|unique',
+            ]);
+            return 'OK';
+        } catch (\Exception $th) {
+            return response()->json(['errors' => $th->errors()]);
+        }
+    }
 }

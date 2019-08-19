@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Table from '../TableView/Table';
+import Modal from '../ModalPanel/Modal';
 import { NotificationManager } from 'react-notifications';
 import axios from 'axios';
 
@@ -36,7 +37,7 @@ export default class Users extends Component {
 		return (
 			<div>
 				<section class="headerTable">
-					<button type="button" class="">
+					<button type="button" data-toggle="modal" data-target="#addUser">
 						Adicionar
 					</button>
 					<div class="input-group mb-3">
@@ -65,11 +66,51 @@ export default class Users extends Component {
 					view={true}
 					delete={true}
 				/>
+				<Modal
+					title="Adicionar Usuário"
+					size="" /*modal-sm lg xl*/
+					idModal="addUser"
+					actionText="Adicionar"
+					cancelText="Cancelar"
+					idForm="addUserForm"
+					function="add"
+					url="http://codeplus.desenv:80/dashboard/usuarios/"
+				>
+					<form class="d-inline-bloc basicInput" id="addUserForm" method="POST">
+						<input type="hidden" name="_token" value={this.props.token} />
+						<div class="groupInput">
+							<input
+								class="form-control input-dash-text"
+								type="text"
+								name="name"
+								placeholder="Nome Completo do Usuário"
+							/>
+						</div>
+						<div class="groupInput">
+							<input class="form-control input-dash-text" type="text" name="login" placeholder="Login" />
+						</div>
+						<div class="groupInput">
+							<input
+								class="form-control input-dash-text"
+								type="password"
+								name="password"
+								placeholder="Senha"
+							/>
+						</div>
+						<div class="groupInput selectElement">
+							<select class="form-control inputSelect" name="select">
+								<option value="A">Ativo</option>
+								<option value="I">Inativo</option>
+							</select>
+						</div>
+					</form>
+				</Modal>
 			</div>
 		);
 	}
 }
 
 if (document.getElementById('users')) {
-	ReactDOM.render(<Users />, document.getElementById('users'));
+	var token = document.getElementById('users').getAttribute('token');
+	ReactDOM.render(<Users token={token} />, document.getElementById('users'));
 }

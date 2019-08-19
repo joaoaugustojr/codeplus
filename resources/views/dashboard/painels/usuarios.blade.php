@@ -6,6 +6,6 @@
 
 @section('painel')
 
-    <section id="users"></section>
+    <section id="users" token="{{ csrf_token() }}"></section>
 
 @endsection
