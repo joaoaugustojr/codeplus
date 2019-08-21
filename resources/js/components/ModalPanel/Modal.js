@@ -1,30 +1,24 @@
 import React, { Component } from 'react';
+import Crud from '../../services/Crud';
 import { NotificationManager } from 'react-notifications';
 
 export default class Modal extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {};
-
 		this.add = this.add.bind(this); //add model
 	}
 
-	add() {
-		var form = $('#' + this.props.idForm).serializeArray();
-		axios
-			.post(this.props.url, {
-				form
-			})
-			.then((response) => {
-				if (response.data.errors) {
-					$.each(response.data.errors, function(i, item) {
-						NotificationManager.error('Erro inesperado - ' + item[0] + ' Contate suporte!', 'Erro');
-					});
-				}
-			})
-			.catch((error) => {
-				NotificationManager.error('Erro inesperado - ' + error + ' Contate suporte!', 'Erro');
-			});
+	async add() {
+		var response = await Crud.add(this.props.url, this.props.idForm);
+
+		if (response == 'ok') {
+			NotificationManager.success('Dados salvos com sucesso!', 'Aviso!');
+			$('.modal').modal('toggle');
+			$('.modal-backdrop').remove();
+		} else {
+			NotificationManager.error(response['erro'] + ' Contate suporte!', 'Erro');
+		}
 	}
 
 	render() {

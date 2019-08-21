@@ -2,33 +2,37 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Table from '../TableView/Table';
 import Modal from '../ModalPanel/Modal';
-import { NotificationManager } from 'react-notifications';
-import axios from 'axios';
+import Misc from '../../services/Misc';
+import Crud from '../../services/Crud';
 
 export default class Users extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			data: [],
-			search: ''
+			search: '',
+			name: ''
 		};
 
 		this.pesquisar = this.pesquisar.bind(this);
+		this.upppercase = this.upppercase.bind(this);
 	}
 
-	componentDidMount() {
-		axios
-			.get('http://codeplus.desenv:80/dashboard/usuarios/show')
-			.then((response) => {
-				this.setState({ data: response.data });
-			})
-			.catch((error) => {
-				NotificationManager.error('Erro inesperado - ' + error + ' Contate suporte!', 'Erro');
-			});
+	async componentDidMount() {
+		await this.listar();
+	}
+
+	async listar() {
+		console.log('listando');
+		this.setState({ data: await Crud.list('http://codeplus.desenv:80/dashboard/usuarios/show') });
 	}
 
 	pesquisar(ev) {
 		this.setState({ search: ev.target.value });
+	}
+
+	upppercase(ev) {
+		this.setState({ name: Misc.uppercaseValue(ev.target.value) });
 	}
 
 	render() {
@@ -83,7 +87,9 @@ export default class Users extends Component {
 								class="form-control input-dash-text"
 								type="text"
 								name="name"
+								value={this.state.name}
 								placeholder="Nome Completo do Usuário"
+								onChange={this.upppercase}
 							/>
 						</div>
 						<div class="groupInput">
