@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import Crud from '../../services/Crud';
 import { NotificationManager } from 'react-notifications';
+import { bindActionCreators } from 'redux';
+import * as actionsCrud from '../../actions/actCrud';
+import { connect } from 'react-redux';
 
-export default class Modal extends Component {
+class Modal extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {};
@@ -61,3 +64,7 @@ export default class Modal extends Component {
 		);
 	}
 }
+
+const mapDispatchToProps = (dispatch) => bindActionCreators(actionsCrud, dispatch);
+
+export default connect(null, mapDispatchToProps)(Modal);
