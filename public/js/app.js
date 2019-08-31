@@ -68974,7 +68974,6 @@ if (document.getElementById('breadcrumbs')) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Login; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
@@ -68983,159 +68982,130 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_notifications__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_notifications__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
 
 
+/* harmony default export */ __webpack_exports__["default"] = (Login = function Login(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      store_id = _useState2[0],
+      setStoreId = _useState2[1];
 
-var Login =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Login, _Component);
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      login = _useState4[0],
+      setLogin = _useState4[1];
 
-  function Login(props) {
-    var _this;
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      password = _useState6[0],
+      setPassword = _useState6[1];
 
-    _classCallCheck(this, Login);
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.token),
+      _useState8 = _slicedToArray(_useState7, 2),
+      token = _useState8[0],
+      setToken = _useState8[1];
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Login).call(this, props));
-    _this.state = {
-      store_id: '',
-      login: '',
-      password: '',
-      token: _this.props.token
-    };
-
-    _this.onChange = function (ev) {
-      ev.target.name == 'store_id' ? _this.setState({
-        store_id: ev.target.value
-      }) : null;
-      ev.target.name == 'login' ? _this.setState({
-        login: ev.target.value
-      }) : null;
-      ev.target.name == 'password' ? _this.setState({
-        password: ev.target.value
-      }) : null;
-    };
-
-    _this.validarUsuario = _this.validarUsuario.bind(_assertThisInitialized(_this));
-    return _this;
+  function onChange(ev) {
+    ev.target.name == 'store_id' ? setStoreId(ev.target.value) : null;
+    ev.target.name == 'login' ? setLogin(ev.target.value) : null;
+    ev.target.name == 'password' ? setPassword(ev.target.value) : null;
   }
 
-  _createClass(Login, [{
-    key: "validarUsuario",
-    value: function validarUsuario() {
-      var error = false;
-      this.state.store_id == '' ? (react_notifications__WEBPACK_IMPORTED_MODULE_2__["NotificationManager"].warning('O campo Estabelecimento deve ser preenchido!', 'Aviso'), error = true) : null;
-      this.state.login == '' ? (react_notifications__WEBPACK_IMPORTED_MODULE_2__["NotificationManager"].warning('O campo Usuário deve ser preenchido!', 'Aviso'), error = true) : null;
-      this.state.password == '' ? (react_notifications__WEBPACK_IMPORTED_MODULE_2__["NotificationManager"].warning('O campo Senha deve ser preenchido!', 'Aviso'), error = true) : null;
-      !error ? this.verificarUsuario() : null;
-    }
-  }, {
-    key: "verificarUsuario",
-    value: function verificarUsuario() {
-      axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('http://codeplus.desenv:80/', {
-        user: this.state.login,
-        store_id: this.state.store_id,
-        password: this.state.password,
-        token: this.state.token
-      }).then(function (response) {
-        response.data == 'error' ? react_notifications__WEBPACK_IMPORTED_MODULE_2__["NotificationManager"].error('Usuário não cadastrado!', 'Erro') : window.location.reload();
-      })["catch"](function (error) {
-        react_notifications__WEBPACK_IMPORTED_MODULE_2__["NotificationManager"].error('Erro inesperado - ' + error + ' Contate suporte!', 'Erro');
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "class": "loginBox bg-white text-center"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "class": "codePlusLogo text-center d-inline-block justify-content-center"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        "class": "text-center",
-        src: this.props.img
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
-        "class": "dropIcon",
-        name: "arrow-dropdown"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        "class": "d-inline-block formLogin",
-        method: "POST"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "hidden",
-        name: "_token",
-        value: this.props.token
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "class": "groupInput"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "class": "iconLogin"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
-        name: "apps"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "number",
-        name: "store_id",
-        value: this.state.store_id,
-        onChange: this.onChange,
-        placeholder: "C\xF3digo do Estabelecimento"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "class": "groupInput"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "class": "iconLogin"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
-        name: "person"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        name: "login",
-        value: this.state.login,
-        onChange: this.onChange,
-        placeholder: "Usu\xE1rio"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "class": "groupInput"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "class": "iconLogin"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
-        name: "key"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "password",
-        name: "password",
-        value: this.state.password,
-        onChange: this.onChange,
-        placeholder: "Senha"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "class": "buttons"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        "class": "btnLogin",
-        onClick: this.validarUsuario
-      }, "Login")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        "class": "text-capitalize textSuport"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
-        "class": "font-weight-light"
-      }, this.props.msg)));
-    }
-  }]);
+  function validarUsuario() {
+    var error = false;
+    store_id == '' ? (react_notifications__WEBPACK_IMPORTED_MODULE_2__["NotificationManager"].warning('O campo Estabelecimento deve ser preenchido!', 'Aviso'), error = true) : null;
+    login == '' ? (react_notifications__WEBPACK_IMPORTED_MODULE_2__["NotificationManager"].warning('O campo Usuário deve ser preenchido!', 'Aviso'), error = true) : null;
+    password == '' ? (react_notifications__WEBPACK_IMPORTED_MODULE_2__["NotificationManager"].warning('O campo Senha deve ser preenchido!', 'Aviso'), error = true) : null;
+    !error ? verificarUsuario() : null;
+  }
 
-  return Login;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+  function verificarUsuario() {
+    axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('http://codeplus.desenv:80/', {
+      user: login,
+      store_id: store_id,
+      password: password,
+      token: token
+    }).then(function (response) {
+      response.data == 'error' ? react_notifications__WEBPACK_IMPORTED_MODULE_2__["NotificationManager"].error('Usuário não cadastrado!', 'Erro') : window.location.reload();
+    })["catch"](function (error) {
+      react_notifications__WEBPACK_IMPORTED_MODULE_2__["NotificationManager"].error('Erro inesperado - ' + error + ' Contate suporte!', 'Erro');
+    });
+  }
 
-
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "loginBox bg-white text-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "codePlusLogo text-center d-inline-block justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    "class": "text-center",
+    src: props.img
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
+    "class": "dropIcon",
+    name: "arrow-dropdown"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    "class": "d-inline-block formLogin",
+    method: "POST"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "hidden",
+    name: "_token",
+    value: props.token
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "groupInput"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "iconLogin"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
+    name: "apps"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "number",
+    name: "store_id",
+    value: store_id,
+    onChange: onChange,
+    placeholder: "C\xF3digo do Estabelecimento"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "groupInput"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "iconLogin"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
+    name: "person"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    name: "login",
+    value: login,
+    onChange: onChange,
+    placeholder: "Usu\xE1rio"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "groupInput"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "iconLogin"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ion-icon", {
+    name: "key"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "password",
+    name: "password",
+    value: password,
+    onChange: onChange,
+    placeholder: "Senha"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "buttons"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    "class": "btnLogin",
+    onClick: validarUsuario
+  }, "Login")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    "class": "text-capitalize textSuport"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", {
+    "class": "font-weight-light"
+  }, props.msg)));
+});
 
 if (document.getElementById('login')) {
   var msg = document.getElementById('login').getAttribute('msgSuport');
